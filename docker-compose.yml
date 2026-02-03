@@ -1,0 +1,52 @@
+services:
+  # postgres:
+  #   image: postgres:16-alpine
+  #   container_name: investment-advisor-postgres
+  #   environment:
+  #     POSTGRES_USER: ${POSTGRES_USER:-postgres}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+  #     POSTGRES_DB: ${POSTGRES_DB:-investment_advisor}
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U postgres"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   networks:
+  #     - investment-advisor-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: investment-advisor-backend
+    container_name: investment-advisor-backend
+    profiles:
+      - prod
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/investment_advisor
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=investment_advisor
+      - LOG_LEVEL=INFO
+    ports:
+      - "8000:8000"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4 # Dockerfile 명령어 덮어쓰기
+    restart: unless-stopped
+    # depends_on:
+    #   postgres:
+    #     condition: service_healthy
+    networks:
+      - investment-advisor-network
+
+# volumes:
+#   postgres_data:
+#     driver: local
+
+networks:
+  investment-advisor-network:
+    driver: bridge

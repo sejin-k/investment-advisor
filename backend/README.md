@@ -1,4 +1,4 @@
-# Stock Advisor Backend
+# Investment Advisor Backend
 
 FastAPI, PostgreSQL, LangChain을 사용한 AI 기반 주식 투자 어드바이저 API
 
@@ -178,7 +178,7 @@ ruff format app tests && ruff check --fix app tests && mypy app && pytest
 | `DATABASE_URL` | PostgreSQL 연결 URL | (비어있음) |
 | `POSTGRES_USER` | PostgreSQL 사용자명 | `postgres` |
 | `POSTGRES_PASSWORD` | PostgreSQL 비밀번호 | `postgres` |
-| `POSTGRES_DB` | PostgreSQL 데이터베이스명 | `stock_advisor` |
+| `POSTGRES_DB` | PostgreSQL 데이터베이스명 | `Investment_advisor` |
 | `OPENAI_API_KEY` | OpenAI API 키 | (비어있음) |
 | `SECRET_KEY` | JWT용 비밀 키 | `change-in-production` |
 | `LOG_LEVEL` | 로깅 레벨 | `INFO` |

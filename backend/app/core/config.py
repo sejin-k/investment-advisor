@@ -36,7 +36,7 @@ class Settings(BaseSettings):
     # 데이터베이스
     # TODO: 데이터베이스 준비 시 주석 해제
     # 형식: postgresql://user:password@host:port/database
-    # 예시: postgresql://postgres:postgres@localhost:5432/stock_advisor
+    # 예시: postgresql://postgres:postgres@localhost:5432/investment_advisor
     DATABASE_URL: str = Field(
         default="",
         description="PostgreSQL 연결 URL (psycopg3 형식). 데이터베이스 설정 전까지 비워둡니다."

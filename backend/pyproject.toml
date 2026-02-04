@@ -6,9 +6,9 @@ build-backend = "hatchling.build"
 packages = ["app"]
 
 [project]
-name = "stock-advisor-backend"
+name = "investment-advisor-backend"
 version = "0.1.0"
-description = "Stock Investment Advisor AI Agent Backend"
+description = "Investment Advisor AI Agent Backend"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.115.0",
